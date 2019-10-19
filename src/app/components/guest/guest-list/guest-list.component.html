@@ -1,1 +1,27 @@
-<p>guest-list works!</p>
+<div class="container-fluid">
+
+  <div>
+    <h4 style="float: left; margin-top:10px; margin-bottom:10px;" href="#" >Guests</h4>
+</div>
+    <div>
+        <a class="btn btn-primary" style="color: white; float: right; margin-top:10px; margin-bottom:10px;" routerLink="/guests/new">Create</a>
+    </div>
+    <table class="table table-striped">
+        <thead style="background-color: brown;  color: white">
+          <tr>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Age</th>
+            <th><i class="fa fa-edit fa-2x"></i></th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let patient of patients">
+          <tr>
+            <td>{{patient.guestName}}</td>
+            <td>{{patient.guestSurname}}</td>
+            <td>{{patient.age}}</td>
+            <td><a class="btn btn-secondary" style="color: white" (click)="editPatient(patient.guestId)">Edit</a></td>
+          </tr>
+        </tbody>
+      </table>
+</div>

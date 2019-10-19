@@ -1,0 +1,28 @@
+<div class="container-fluid">
+
+        <div>
+                <h4 style="float: left; margin-top:10px; margin-bottom:10px;" href="#" >Items</h4>
+            </div>
+        <div>
+            <a class="btn btn-primary" style="color: white; float: right; margin-top:10px; margin-bottom:10px;" routerLink="/items/new">Create</a>
+        </div>
+        <table class="table table-striped">
+            <thead style="background-color: brown; color:white">
+              <tr>
+                <th scope="col">Item Name</th>
+                <th scope="col">Qty</th>
+                <th scope="col">Price</th>
+                <th><i class="fa fa-edit fa-2x"></i></th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let patient of patients">
+              <tr>
+                <td>{{patient.description}}</td>
+                <td>{{patient.qty}}</td>
+                <td>{{patient.price}}</td>
+                <td><a class="btn btn-primary" style="color: white" (click)="editPatient(patient.itemID)">Edit</a></td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+    

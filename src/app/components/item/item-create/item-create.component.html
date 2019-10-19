@@ -1,0 +1,40 @@
+<div class="container-fluid" style="margin-top: 10px">
+
+    <div class="card-header">
+        <h3>Create</h3>
+    </div>
+
+    <div clas="card">
+
+        <div class="card-body">
+            <form (ngSubmit)="onSubmit()" #itemForm="ngForm">
+
+                <div class="form-group ">
+                    <label for="description">Item Name</label>
+                    <input type="text" id="description" #description="ngModel" [(ngModel)]="patient.description"
+                        name="description" class="form-control" required />
+                </div>
+                <div class="form-group ">
+                    <label for="quantity">Quantity</label>
+                    <input type="text" id="quantity" #qty="ngModel" [(ngModel)]="patient.qty"
+                        name="quantity" class="form-control" required />
+                </div>
+                <div class="form-group ">
+                    <label for="price">Price</label>
+                    <input type="text" id="price" #price="ngModel" [(ngModel)]="patient.price"
+                        name="price" class="form-control" required />
+                </div>
+
+                <div>
+                    <button type="submit" [disabled]="itemForm.form.invalid"
+                        class="btn btn-primary col-sm-12 col-md-2" style="margin-right:5px; margin-bottom: 5px"
+                        routerLink="items">Save</button>
+
+                    <button (click)="cancel()" class="btn btn-secondary col-sm-12 col-md-2"
+                        style="margin-right:5px; margin-bottom: 5px">Cancel</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

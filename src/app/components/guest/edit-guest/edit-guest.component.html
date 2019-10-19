@@ -1,1 +1,38 @@
-<p>edit-guest works!</p>
+<div class="container-fluid" style="margin-top: 10px">
+
+    <div class="card-header" style="background-color: brown; color:white">
+        <h3>Update</h3>
+     </div>
+    
+    <div clas="card">
+
+      <div class="card-body">
+            <form (ngSubmit)="onSubmit()">
+
+                <div class="form-group ">
+                  <label for="guestName">First Name</label>
+                  <input type="text" id="guestName" required [(ngModel)]="patient.guestName" [value]="patient.guestName" name="guestName" class="form-control" />
+                </div>
+            
+                <div class="form-group">
+                  <label for="lastName">Last Name</label>
+                  <input type="text" id="guestSurname" required [(ngModel)]="patient.guestSurname" [value]="patient.guestSurname" name="guestSurname" class="form-control" />
+                </div>
+
+                <div class="form-group">
+                  <label for="age">Age</label>
+                  <input type="text" id="age" required [(ngModel)]="patient.age" [value]="patient.age" name="age" class="form-control"/>
+                </div>
+        
+
+                <div>
+                    <button type="submit" class="btn btn-primary col-sm-12 col-md-2" style="margin-right:5px; margin-bottom: 5px" routerLink="guests">Save</button>
+
+                
+                    <button (click)="cancel()" class="btn btn-secondary col-sm-12 col-md-2" style="margin-right:5px; margin-bottom: 5px">Cancel</button>
+                </div>
+            
+              </form>
+        </div>      
+     </div>
+</div>

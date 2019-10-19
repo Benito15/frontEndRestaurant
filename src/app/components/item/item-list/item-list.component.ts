@@ -1,36 +1,37 @@
 import { Component, OnInit } from '@angular/core';
-import { Guest } from 'src/app/model/guest';
-import { GuestService } from 'src/app/service/guest.service';
+import { Item } from 'src/app/model/item';
+import { ItemService } from 'src/app/service/item.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-guest-list',
-  templateUrl: './guest-list.component.html',
-  styleUrls: ['./guest-list.component.css']
+  selector: 'app-item-list',
+  templateUrl: './item-list.component.html',
+  styleUrls: ['./item-list.component.css']
 })
-export class GuestListComponent implements OnInit {
+export class ItemListComponent implements OnInit {
 
-  private patients: Guest[];
+  private patients: Item[];
 
-  private patient:Guest;
+  private patient:Item;
   id:string;
 
-  constructor(private patientService:GuestService, private router:Router) { }
+  constructor(private patientService:ItemService, private router:Router) { }
 
   ngOnInit() {
+    
     this.getPatients();
     this.setActive();
+
   }
 
   getPatients(){
     this.patientService.getAll().subscribe(data => {
       this.patients = data;
-      console.log(data);
     });
   }
 
   deletePatient(id:string) {
-    this.patientService.deleteVisit(id).subscribe(
+    this.patientService.deleteItem(id).subscribe(
 
       data => {
        console.log(data);
@@ -40,9 +41,8 @@ export class GuestListComponent implements OnInit {
   }
 
   editPatient(id:string) {
-    console.log(id);
-    this.patientService.saveId(id);
-    this.router.navigate(['/guests/edit']);
+this.patientService.saveId(id);
+    this.router.navigate(['/items/edit']);
     
 
   }
@@ -52,5 +52,6 @@ export class GuestListComponent implements OnInit {
     document.getElementById('patientsLink').classList.add('active');
     document.getElementById('visitsLink').classList.remove('active');
   }
+
 
 }

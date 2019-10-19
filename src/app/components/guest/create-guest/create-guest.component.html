@@ -1,1 +1,36 @@
-<p>create-guest works!</p>
+<div class="container-fluid" style="margin-top: 10px">
+
+    <div class="card-header" style="background-color: brown; color:white">
+      <h3>Create</h3>
+    </div>
+  
+    <div clas="card">
+  
+      <div class="card-body">
+        <form (ngSubmit)="onSubmit()" #patientForm="ngForm">
+  
+          <div class="form-group ">
+            <label for="guestName">First Name</label>
+            <input type="text" id="guestName" #guestName="ngModel" [(ngModel)]="patient.guestName" name="guestName" class="form-control" required />
+          </div>
+  
+          <div class="form-group">
+            <label for="guestSurname">Last Name</label>
+            <input type="text" id="guestSurname" #guestSurname="ngModel" [(ngModel)]="patient.guestSurname" name="guestSurname" class="form-control" required />
+          </div>
+  
+          <div class="form-group">
+            <label for="age">Age</label>
+            <input type="text" id="age" #age="ngModel" [(ngModel)]="patient.age" name="age" class="form-control" required />
+          </div>
+  
+          <div>
+            <button type="submit" [disabled]="patientForm.form.invalid" class="btn btn-primary col-sm-12 col-md-2" style="margin-right:5px; margin-bottom: 5px" routerLink="guests">Save</button>
+  
+            <button (click)="cancel()" class="btn btn-secondary col-sm-12 col-md-2" style="margin-right:5px; margin-bottom: 5px">Cancel</button>
+          </div>
+  
+        </form>
+      </div>
+    </div>
+  </div>

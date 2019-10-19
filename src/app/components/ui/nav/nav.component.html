@@ -1,17 +1,32 @@
 <div class="container-fluid">
 
-    <nav class="navbar navbar-expand-lg fixed-top" style="background-color:brown">
-  
-      <a class="navbar-brand" style="color:white">Restaurant</a>
-  
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-  
-          <li class="nav-item active hidden" id="patientsLink">
-            <a class="nav-link" style="color:white" routerLink="/patients/list" (click)="changeLink1()">Guest</a>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: brown">
+
+    <a class="navbar-brand" style="color:white">Benitos Restaurant</a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" id="toggle">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+
+        <li class="nav-item" id="patientsLink">
+          <a class="nav-link" routerLink="/guests" (click)="changeLink1()">Guests</a>
+        </li>
+
+        <li class="nav-item" id="appoinmentsLink">
+            <a class="nav-link" routerLink="/orders" (click)="changeLink2()">Orders</a>
           </li>
-        </ul>
-      </div>
-  
-    </nav>
-  </div>
+
+        <li class="nav-item" id="visitsLink">
+          <a class="nav-link" routerLink="/items" (click)="changeLink3()">Items</a>
+        </li>
+
+      </ul>
+    
+    </div>
+
+  </nav>
+</div>
