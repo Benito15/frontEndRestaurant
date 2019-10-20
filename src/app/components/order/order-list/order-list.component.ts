@@ -14,106 +14,91 @@ import { ItemService } from 'src/app/service/item.service';
 })
 export class OrderListComponent implements OnInit {
 
-  private patients: Guest[] = [];
-  private appointments:Order[] = [];
-  private items: Item[] = [];
-  id:string;
+  private orders: Order[];
+  private guests: Guest[];
+  private items: Item[];
 
-  constructor(private appointmentService:OrderService,private itemService:ItemService, private patientService:GuestService, private router:Router) { }
+  id: string;
+
+  constructor(private orderService: OrderService, private itemService: ItemService, private guestService: GuestService, private router: Router) { }
 
   ngOnInit() {
-    this.getAppointments();
-    this.getPatients();
-    this.getAllPatientsLinkedWithAppointment();
-    this.setActive();
-    //this.getItemLinkedWithOrder();
+
+    this.getOrders();
+    this.getGuests();
+    this.getAllGuestsLinkedWithOrder();
 
   }
 
-  getPatients(){
-    this.patientService.getAll().subscribe(data => {
-      this.patients = data;
-    })
-  }
-
-  getAppointments(){
-
-    this.appointmentService.getAll().subscribe(data => {
-        this.appointments = data;
-    })
-
-  }
-
-  getAllPatientsLinkedWithAppointment(){
-
-    this.appointmentService.getAll().subscribe(appointments =>{
-
-      this.appointments = appointments;
-
-      this.patientService.getAll().subscribe(patients =>{
-
-          this.patients = patients;
-
-          for(var i = 0; i < appointments.length; i++){
-             
-            for(var j = 0; j < patients.length; j++){
-              if(appointments[i].guestID == patients[j].guestID){
-                appointments[i].guest = patients[j];
-              }
-            }
-          }
-      });
-
+  getOrders() {
+    this.orderService.getAll().subscribe(orders => {
+      this.orders = orders;
     });
-
   }
 
-  getItemLinkedWithOrder(){
+  getGuests() {
+    this.guestService.getAll().subscribe(guests => {
+      this.guests = guests;
+    });
+  }
 
-    this.itemService.getAll().subscribe(items =>{
-
+  getItems() {
+    this.itemService.getAll().subscribe(items => {
       this.items = items;
+    })
+  }
 
-      this.appointmentService.getAll().subscribe(patients =>{
+  getAllGuestsLinkedWithOrder() {
 
-          this.appointments = patients;
+    this.orderService.getAll().subscribe(orders => {
+      
+      this.orders = orders;
 
-          for(var i = 0; i < items.length; i++){
-             
-            for(var j = 0; j < patients.length; j++){
-              if(items[i].itemID == patients[j].itemID){
-                patients[j].item= items[i];
-              }
+      this.guestService.getAll().subscribe(guests => {
+        this.guests = guests;
+        console.log(guests)
+
+        for (var i = 0; i < orders.length; i++) {
+          for (var j = 0; j < guests.length; j++) {
+            if (orders[i].guestId == guests[j].guestID) {
+              orders[i].guest = guests[j];
             }
           }
+        }
+
       });
+
+      this.itemService.getAll().subscribe(item => {
+        this.items = item;
+
+        for (var i = 0; i < orders.length; i++) {
+          for (var j = 0; j < item.length; j++) {
+            if (orders[i].empID == item[j].itemID) {
+              orders[i].item = item[j];
+            }
+          }
+        }
+
+      });
+
 
     });
 
+   
   }
 
+  getAllItemsLinkedWithOrder() {
 
+    this.orderService.getAll().subscribe(orders => {
+      
+      this.orders = orders;
 
+     
 
-  deleteAppointment(id:string) {
-    this.appointmentService.deleteOrder(id).subscribe(
-
-      data => {
-       console.log(data);
-       this.getAppointments();
-      }
-    );
+    });
   }
 
-  viewAppoinement(id:string) {
-
-    this.appointmentService.saveId(id);
-    this.router.navigate(['guests/view']);
-    
-
-  }
-
-  setActive(){
+  setActive() {
     document.getElementById('doctorsLink').classList.remove('active');
     document.getElementById('patientsLink').classList.remove('active');
     document.getElementById('appointmentsLink').classList.add('active');

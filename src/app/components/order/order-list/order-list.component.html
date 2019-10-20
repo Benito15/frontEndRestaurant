@@ -11,18 +11,17 @@
    <table class="table table-striped">
        <thead style="background-color: brown; color: white">
            <tr>
-               <th scope="col">Guest</th>
                <th scope="col">Date</th>
+               <th scope="col">Guest</th>
                <th scope="col">Order</th>
                <!-- <th><i class="fa fa-eye fa-2x"></i></th> -->
            </tr>
        </thead>
-       <tbody *ngFor="let appointment of appointments">
+       <tbody *ngFor="let order of orders">
            <tr>
-               <td>{{appointment.guest.guestName + " " + appointment.guest.guestSurname }}</td>
-               <td>{{appointment.dte}}</td>
-               <td>{{appointment.item.description}}</td>
-               <!-- <td><a class="btn btn-dark" style="color: white" (click)="viewAppoinement(appointment.appointmentId)">View</a></td> -->
+               <td>{{order.dte}}</td>
+               <td>{{order.guest.guestName + " " + order.guest.guestSurname}}</td>
+               <td>{{order.item.description + " @  R" + order.item.price}}</td>
            </tr>
        </tbody>
    </table>

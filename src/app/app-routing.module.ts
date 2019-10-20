@@ -14,7 +14,7 @@ import { HomeComponent } from './components/ui/home/home.component';
 
 const routes: Routes = [
 
-  {path: '', redirectTo: 'orders', pathMatch: 'full'},
+  {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
   {path: 'orders', component : OrderListComponent},
   {path: 'orders/new', component: OrderCreateComponent},

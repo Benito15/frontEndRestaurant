@@ -3,7 +3,7 @@ import { Item } from './item';
 
 export class Order{
     orderID:string;
-    guestID:string;
+    guestId:string;
     empID:string;
     dte:string;
     total:number;

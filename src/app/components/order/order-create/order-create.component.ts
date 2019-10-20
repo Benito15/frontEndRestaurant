@@ -14,7 +14,7 @@ import { Guest } from 'src/app/model/guest';
 })
 export class OrderCreateComponent implements OnInit {
 
-  appointment: Order = new Order();
+  order: Order = new Order();
   submitted = false;
   durations: String[] = ['15 min', '30 min', '1 hr', '2 hr', '3 hr', '4 hr'];
 
@@ -68,21 +68,21 @@ export class OrderCreateComponent implements OnInit {
 
   newAppointment() : void{
     this.submitted = false;
-    this.appointment = new Order();
+    this.order = new Order();
   }
 
   save(){
 
-    this.appointment.dte = this.getFullDate();
-    this.appointmentService.createOrder(this.appointment).subscribe(data => console.log(data), error => console.log(error));
-    this.appointment = new Order();
+    this.order.dte = this.getFullDate();
+    this.appointmentService.createOrder(this.order).subscribe(data => console.log(data), error => console.log(error));
+    this.order = new Order();
   }
 
 
   getPatient(value:string){
 
     if(value != '-1'){
-      this.appointment.guestID = value;
+      this.order.guestId = value;
     
       console.log(value);
     }
@@ -94,7 +94,7 @@ export class OrderCreateComponent implements OnInit {
 
   getItem(value:string){
     if(value != '-1'){
-      this.appointment.empID = value;
+      this.order.empID = value;
       console.log(value);
     }
     else{
